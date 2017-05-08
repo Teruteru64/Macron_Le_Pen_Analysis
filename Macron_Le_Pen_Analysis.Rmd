@@ -13,9 +13,10 @@ knitr::opts_chunk$set(echo = TRUE)
 install.packages("rvest")
 library(magrittr)
 library(rvest)
-Macron1 <- read_html("https://en-marche.fr/article/meeting-macron-reims-discours") %>% html_nodes("p") %>% html_text()
-length(Macron1)
-
+library(readxl)
+install.packages("quanteda")
+LE_PEN <- read_excel("~/Macron_Le_Pen_Analysis/LE_PEN.xlsx")
+data(LE_PEN, package = "tm")
 ```
 
 ```{r}
