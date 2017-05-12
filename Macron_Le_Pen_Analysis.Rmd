@@ -5,21 +5,33 @@ date: "29/04/2017"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE, echo=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE, error = TRUE, fig.pos = 'H', tidy.opts=list(width.cutoff=65), tidy=TRUE, fig.path='figs/', cache.path='cache/graphics-', 
+           fig.align='center', fig.width = 5, fig.height = 4, fig.show = 'hold',
+           cache = TRUE, par = TRUE)
 ```
 
-```{r webscraping}
-install.packages("rvest")
-library(magrittr)
-library(rvest)
-library(readxl)
+```{r setting, include=FALSE, echo=FALSE}
+
 install.packages("quanteda")
-LE_PEN <- read_excel("~/Macron_Le_Pen_Analysis/LE_PEN.xlsx")
-data(LE_PEN, package = "tm")
+library(quanteda)
+library(readxl)
+library(tm)
+MACRONLEPEN <- read_excel("~/Dropbox/Quantitative Content Analysis/Dataset-MACRONLEPEN.xlsx")
+Corpus <- Corpus(VectorSource(MACRONLEPEN$text))
+Dfm <- dfm(Corpus, tolower = T, stem = T, removePunct = T,
+           removeNumbers = T, removeSymbols = T, 
+           remove = stopwords("french"))
+
+
 ```
 
 ```{r}
 rm(list = ls())
+
+Corpus2 <-  tm_map(Corpus, tolower)
+Corpus3 <-  tm_map(Corpus2, removeWords, stopwords("french"))
+Corpus4 <-  tm_map(Corpus3, removePunctuation)
 ```
 
