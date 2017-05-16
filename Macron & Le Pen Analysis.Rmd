@@ -1,11 +1,11 @@
 ---
 title: "Macron & Le Pen Left-Right Analysis"
-author: "Lea Duplan, Akira Sasaki"
+author: "Léa Duplan & Akira Sasaki"
 date: "16/05/2017"
 output:
+  word_document: default
   pdf_document: default
   html_document: default
-  word_document: default
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
@@ -76,7 +76,7 @@ library(tm)
 library(austin)
 library(ggplot2)
 
-setwd("/Users/Teruteru/Dropbox/Quantitative Content Analysis/MACRON")
+setwd("~/Macron_Le_Pen_Analysis/MACRON")
 wdir <- getwd()
 myCorpusMA <- VCorpus(DirSource(wdir,pattern = "\\.txt", recursive = T))
 corpusMA <- corpus(myCorpusMA, readerControl = list (reader=readPlain,language = "fr", load = FALSE))
@@ -96,7 +96,7 @@ textplot_wordcloud(speechDfmMA, min.freq = 50, random.order = FALSE,
 
 
 ```{r3, include = FALSE, echo=FALSE}
-setwd("/Users/Teruteru/Dropbox/Quantitative Content Analysis/LEPEN")
+setwd("~/Macron_Le_Pen_Analysis/LEPEN")
 wdir <- getwd()
 myCorpusLP <- VCorpus(DirSource(wdir,pattern = "\\.txt", recursive = T))
 corpusLP <- corpus(myCorpusLP, readerControl = list (reader=readPlain,language = "fr", load = FALSE))
@@ -202,7 +202,7 @@ Our analysis shows that both candidates shifted to a certain degree their left-r
 To be fully accurate, some limitations have to be mentioned. Firstly, our text corpus would necessitate more and better cleaning to extract only the meaningful words and have a more efficient result. Secondly, more speeches of Le Pen after the first election round would have been preferable to strengthen our claim. Finally, other analyses should be performed to explore other dimensions than the left-right one. For instance, topic modelling for the European, or security dimensions would be interesting.
 
 \newpage
-#Apendix
+#Appendices
 
 ```{r codes, include=TRUE, echo=TRUE, eval=FALSE}
 
